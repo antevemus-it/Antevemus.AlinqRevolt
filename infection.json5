@@ -1,0 +1,38 @@
+// Mutation testing of antevemus/alinq-revolt (1.0.0): the whole src/ (three classes). Runs in the
+// scheduled workflow (.github/workflows/quality.yml) with a coverage driver (pcov); locally:
+//
+//   XDEBUG_MODE=off vendor/bin/infection --threads=max --only-covering-test-cases \
+//       --initial-tests-php-options="-d pcov.enabled=1 -d pcov.directory=$PWD/src"
+//
+// The group "http" (tests/Http, the proof of gain) is left out: it measures wall-clock time against a
+// local server, so under the parallel load of a mutation run a slow machine could "kill" a mutant by a
+// timing miss; every line it covers is also covered by tests/Unit and tests/Property.
+//
+// Measured on 2026-10-20 (1.0.0 against ALinq 2.3.0, Infection 0.35.8, PHP 8.4.13 with pcov): 177 mutants,
+// 168 killed, 1 error and 4 time-outs (detected), 4 escaped, all equivalent (two cancel() calls whose
+// DeferredCancellation destructor cancels anyway, an unsubscribe() of a cancellation released with the
+// task, a finally whose catch (Throwable) already receives every exception); MSI 97.74%, covered-code MSI
+// 97.74%, mutation code coverage 100%. The minimum scores are one integer point below.
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": ["src"]
+    },
+    "timeout": 60,
+    "logs": {
+        "text": "coverage/infection/infection.log",
+        "summary": "coverage/infection/summary.log",
+        "json": "coverage/infection/infection.json",
+        "perMutator": "coverage/infection/per-mutator.md"
+    },
+    "tmpDir": "coverage/infection/tmp",
+    "phpUnit": {
+        "configDir": "."
+    },
+    "testFrameworkOptions": "--exclude-group=http",
+    "minMsi": 96,
+    "minCoveredMsi": 96,
+    "mutators": {
+        "@default": true
+    }
+}
