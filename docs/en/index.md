@@ -19,6 +19,10 @@ The official documentation of the package, one page per topic. The same pages ex
 
 - [Asynchronous operators](api/async-operators.md): The four operators, the closure, keys, errors, time limits and a shared `RevoltRunner`.
 
+### Internals
+
+- [Architecture](internals/architecture.md): Why Revolt and Amp and not ReactPHP, the core's hook that knows no event loop, and what a companion for another event loop implements.
+
 ### Quality
 
 - [Tests](quality/tests.md): The PHPUnit report, the measured timing table and the mutation testing.

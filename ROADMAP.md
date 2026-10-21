@@ -21,3 +21,7 @@ This document outlines the engineering roadmap of **Antevemus ALinq Revolt**, th
 ### 3. Unordered Results 🔀 (Planned)
 - **Description:** `selectAsyncUnordered()` and an unordered `eachAsync()`: results as they complete, so a slow item does not hold the window, when the order of the source does not matter.
 - **Target:** when a consumer needs it.
+
+### 4. A Companion for Another Event Loop 🔌 (Not Planned)
+- **Description:** The same operators over another event loop (ReactPHP, ...), as a separate package built on the same hook of the core (`ALinqLazyCollection::from($factory, $isList)` and `isList()`), touching neither the core nor this package. What it implements, and why this package runs on Revolt and Amp: [Architecture](docs/en/internals/architecture.md). Today a ReactPHP application runs this package through the adapter `revolt/event-loop-adapter-react`, on the Revolt loop.
+- **Target:** on demand; not planned.

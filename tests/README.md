@@ -6,8 +6,8 @@ PHPUnit 11 test suite of **Antevemus ALinq Revolt**, the asynchronous companion 
 
 - **Test Framework:** PHPUnit 11.5+ (PHP 8.4+), `phpunit.xml.dist` with `failOnWarning`, `failOnDeprecation` and `failOnRisky`
 - **Test Files:** 6 test classes in `tests/Unit` (4), `tests/Property` (1) and `tests/Http` (1), plus the fixtures of `tests/Support`
-- **Total Tests:** 99 tests (1.0.0)
-- **Total Assertions:** 4370 assertions, none skipped
+- **Total Tests:** 99 tests (1.0.1)
+- **Total Assertions:** 4436 assertions, none skipped
 - **Success Rate:** 100% Passing (0 failures, 0 errors, 0 deprecations)
 - **Runtime Dependencies:** `antevemus/alinq-collection` ^2.3, `revolt/event-loop` ^1.0, `amphp/amp` ^3.0; the tests also use `amphp/http-server` and `amphp/http-client` (require-dev)
 

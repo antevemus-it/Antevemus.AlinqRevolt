@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-21
+
+A PATCH release with documentation only: a new page explains why the package runs on Revolt and Amp, how it sits on the core, and what a companion for another event loop implements. No change in `src/`.
+
+### Documentation
+
+- **`docs/<language>/internals/architecture.md`** (new, both languages; "Architecture" / "Arquitetura"), prose only, no PHP block: why Revolt and Amp and not ReactPHP (native Fibers instead of promises, with cancellation and timeouts that the window uses as they are; Revolt as the loop both Amp 3 and ReactPHP, through `revolt/event-loop-adapter-react`, run on; the `Amp\Cancellation` that reaches the closure being the one the window cancels; two small run-time packages); the core's hook, `ALinqLazyCollection::from(Closure, ?bool $isList)` and `isList()` (ALinq 2.3.0), which knows no event loop; what a companion for another event loop implements (the wrapper, the operators that declare their shape, the ordered, bounded, lazy window, cancellation on early stop, the error at the item's position); ReactPHP today, through the adapter, and a dedicated companion that is not planned.
+- **Navigation**: a new section, "Internals" / "Internos", with the page, between "API reference" and "Quality" in both `docs-nav.json`; the page is listed in `docs/<language>/index.md` and in both READMEs.
+- **Roadmap**: `docs/<language>/project/roadmap.md` and `ROADMAP.md` (milestone 4) carry an unchecked item: a companion for another event loop (ReactPHP, ...) is not planned; it would be a separate package on the same hook of the core, built on demand, and its contract is the Architecture page.
+- The Release badge of both READMEs is v1.0.1; the Tests badge, the Quality lines, `quality/tests.md` (both languages) and `tests/README.md` carry the counts of 1.0.1.
+
+### Notes
+
+- **Suite**: 99 tests, 4370 → 4436 assertions, none skipped (PHP 8.4.13, against ALinq 2.3.0, the group `http` included). +66 assertions, all in `DocumentationTreeTest` (388 → 454), from the new page and the links to it, the tests unchanged: the navigations +18 (9 per language: 8 checks of the new group and its item, 1 for the file of its path), the relative links +16 (4 on the new page, 1 on each index, 1 on each roadmap page and 2 in each README, per language), the internal-material guard +24 (4 checks per new file, for 2 files, and 1 per new relative link, for 16), the tested blocks +4 (2 per new page), the code of both languages +2 (the fences and the block count of the new page), the declared PHP blocks +2 (0 on the new page, per language). The other classes keep their counts.
+- **No code change**: `src/`, the tests and the workflows are unchanged.
+
 ## [1.0.0] - 2026-10-20
 
 The first release: the asynchronous companion of `antevemus/alinq-collection` (ALinq), milestone 12 of the ALinq roadmap ("Async collection for async SDKs"). It requires ALinq **2.3.0** (`^2.3`): its stages are built with `ALinqLazyCollection::from($factory, ?bool $isList)`, the parameter that release added to declare the shape of a generator stage, and read the shape of a lazy source with `IALinqLazyCollection::isList()`, also added there.

@@ -1,10 +1,10 @@
 # Antevemus ALinq Revolt
 
 [![CI](https://github.com/antevemus-it/Antevemus.AlinqRevolt/actions/workflows/tests.yml/badge.svg)](https://github.com/antevemus-it/Antevemus.AlinqRevolt/actions/workflows/tests.yml)
-[![Latest Stable Version](https://img.shields.io/badge/release-v1.0.0-blue.svg)](https://github.com/antevemus-it/Antevemus.AlinqRevolt/releases)
+[![Latest Stable Version](https://img.shields.io/badge/release-v1.0.1-blue.svg)](https://github.com/antevemus-it/Antevemus.AlinqRevolt/releases)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.4-8892BF.svg)](https://www.php.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests Passing](https://img.shields.io/badge/tests-99%20passed%20%7C%204370%20assertions-success.svg)](docs/pt-BR/quality/tests.md)
+[![Tests Passing](https://img.shields.io/badge/tests-99%20passed%20%7C%204436%20assertions-success.svg)](docs/pt-BR/quality/tests.md)
 [![Core: ALinq](https://img.shields.io/badge/Core-Antevemus.AlinqCollection-orange)](https://github.com/antevemus-it/Antevemus.AlinqCollection)
 
 > **O companheiro assíncrono do [ALinq](https://github.com/antevemus-it/Antevemus.AlinqCollection) para PHP 8.4+**  
@@ -76,6 +76,10 @@ Uma Fiber só ganha tempo enquanto o código dentro dela espera I/O **não bloqu
 
 - [Operadores assíncronos](docs/pt-BR/api/async-operators.md) · [en](docs/en/api/async-operators.md): Os quatro operadores, a closure, chaves, erros, limites de tempo e um `RevoltRunner` compartilhado.
 
+**Internos**
+
+- [Arquitetura](docs/pt-BR/internals/architecture.md) · [en](docs/en/internals/architecture.md): Por que Revolt e Amp e não ReactPHP, o gancho do núcleo que não conhece event loop, e o que um companheiro para outro event loop implementa.
+
 **Qualidade**
 
 - [Testes](docs/pt-BR/quality/tests.md) · [en](docs/en/quality/tests.md): O relatório do PHPUnit, a tabela de tempos medida e o teste de mutação.
@@ -88,7 +92,7 @@ Uma Fiber só ganha tempo enquanto o código dentro dela espera I/O **não bloqu
 
 ## 🧪 Qualidade
 
-- **Testes:** 99 testes PHPUnit (`vendor/bin/phpunit`) e 4370 asserções, 100% passando no PHP 8.4: os operadores e o runner, propriedades com o núcleo como oráculo, a prova de ganho contra um servidor HTTP local, e os blocos de código da documentação.
+- **Testes:** 99 testes PHPUnit (`vendor/bin/phpunit`) e 4436 asserções, 100% passando no PHP 8.4: os operadores e o runner, propriedades com o núcleo como oráculo, a prova de ganho contra um servidor HTTP local, e os blocos de código da documentação.
 - **Propriedades:** 200 entradas semeadas por propriedade: `selectAsync()`/`whereAsync()`/`selectManyAsync()` respondem como `select()`/`where()`/`selectMany()` do núcleo para qualquer concorrência, `take(k)` inicia no máximo k + concorrência itens, e os operadores do núcleo mais adiante respondem como sobre a versão síncrona.
 - **Teste de mutação:** Infection sobre todo o `src/`, MSI 97,74% (4 mutantes escapados, todos equivalentes); o workflow de Qualidade exige 96%.
 - **O relatório**, a tabela de tempos e a rodada de mutação: [Testes](docs/pt-BR/quality/tests.md).

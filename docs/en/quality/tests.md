@@ -15,12 +15,12 @@ Configuration: phpunit.xml.dist
 ................................................................. 65 / 99 ( 65%)
 ..................................                                99 / 99 (100%)
 
-Time: 00:15.119, Memory: 8.00 MB
+Time: 00:11.438, Memory: 8.00 MB
 
-OK (99 tests, 4370 assertions)
+OK (99 tests, 4436 assertions)
 ```
 
-- **99 tests and 4370 assertions**, none skipped, in three suites: `tests/Unit` (the runner, the four operators, the documentation), `tests/Property` (properties against the core as the oracle) and `tests/Http` (the proof of gain, group `http`). The file-by-file account is in `tests/README.md`.
+- **99 tests and 4436 assertions**, none skipped, in three suites: `tests/Unit` (the runner, the four operators, the documentation), `tests/Property` (properties against the core as the oracle) and `tests/Http` (the proof of gain, group `http`). The file-by-file account is in `tests/README.md`.
 - **The runner** (`RevoltRunnerTest`): the value of a task, a returned `Future` awaited, its exception, no more than `concurrency` running with the waiting callers served in arrival order (inside a Fiber, the caller is suspended, not blocked), the time limit as a `CancelledException` carrying a `TimeoutException`, a task that ignores its cancellation keeping its slot until it returns, the cancellation passed in, `cancel()`.
 - **The operators** (`ALinqAsyncCollectionTest`): values, keys and order (against the core's `select()`/`where()`/`selectMany()`, including the integer-keyed dictionary, whose keys `toArray()` keeps as the core does), laziness (nothing runs before the traversal; the source pulled one item per free slot, measured item by item), the window never above `concurrency` (counters at 1, 2, 5 and the default 8 for each operator), early stop (`take()`, `first()`, `any()`, `break`) starting at most the consumed items plus `concurrency` and cancelling what is in flight, errors and time limits at the item's position with the items before delivered, an error of the source unwrapped, the argument checks, every kind of source and callable, a shared runner capping two stages together.
 - **Properties** (`AsyncPropertyTest`, 200 seeded inputs per property, fixed seeds): lists and dictionaries of 0-12 items, concurrency 1-10, a random non-blocking delay per item, so the closures finish out of source order (measured: in 128 of the 200 inputs of the first property). `selectAsync()`/`whereAsync()`/`selectManyAsync()` stream the keys, values and order of the core `select()`/`where()`/`selectMany()` and `toArray()` answers as the core over the same array (integer-keyed dictionaries included), over a lazy ALinq collection of it and over an `ArrayIterator` of the same items; `eachAsync()` runs each action once; `take(k)` starts at most k + concurrency items; `where`, `orderBy`, `concat` and `groupBy` downstream answer as over the synchronous `select()`.

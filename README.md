@@ -1,10 +1,10 @@
 # Antevemus ALinq Revolt
 
 [![CI](https://github.com/antevemus-it/Antevemus.AlinqRevolt/actions/workflows/tests.yml/badge.svg)](https://github.com/antevemus-it/Antevemus.AlinqRevolt/actions/workflows/tests.yml)
-[![Latest Stable Version](https://img.shields.io/badge/release-v1.0.0-blue.svg)](https://github.com/antevemus-it/Antevemus.AlinqRevolt/releases)
+[![Latest Stable Version](https://img.shields.io/badge/release-v1.0.1-blue.svg)](https://github.com/antevemus-it/Antevemus.AlinqRevolt/releases)
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.4-8892BF.svg)](https://www.php.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Tests Passing](https://img.shields.io/badge/tests-99%20passed%20%7C%204370%20assertions-success.svg)](docs/en/quality/tests.md)
+[![Tests Passing](https://img.shields.io/badge/tests-99%20passed%20%7C%204436%20assertions-success.svg)](docs/en/quality/tests.md)
 [![Core: ALinq](https://img.shields.io/badge/Core-Antevemus.AlinqCollection-orange)](https://github.com/antevemus-it/Antevemus.AlinqCollection)
 
 > **The asynchronous companion of [ALinq](https://github.com/antevemus-it/Antevemus.AlinqCollection) for PHP 8.4+**  
@@ -76,6 +76,10 @@ A Fiber only gains time while the code inside it waits on **non-blocking** I/O: 
 
 - [Asynchronous operators](docs/en/api/async-operators.md) · [pt-BR](docs/pt-BR/api/async-operators.md): The four operators, the closure, keys, errors, time limits and a shared `RevoltRunner`.
 
+**Internals**
+
+- [Architecture](docs/en/internals/architecture.md) · [pt-BR](docs/pt-BR/internals/architecture.md): Why Revolt and Amp and not ReactPHP, the core's hook that knows no event loop, and what a companion for another event loop implements.
+
 **Quality**
 
 - [Tests](docs/en/quality/tests.md) · [pt-BR](docs/pt-BR/quality/tests.md): The PHPUnit report, the measured timing table and the mutation testing.
@@ -88,7 +92,7 @@ A Fiber only gains time while the code inside it waits on **non-blocking** I/O: 
 
 ## 🧪 Quality
 
-- **Tests:** 99 PHPUnit tests (`vendor/bin/phpunit`) and 4370 assertions, 100% passing on PHP 8.4: the operators and the runner, properties against the core as the oracle, the proof of gain against a local HTTP server, and the code blocks of the documentation.
+- **Tests:** 99 PHPUnit tests (`vendor/bin/phpunit`) and 4436 assertions, 100% passing on PHP 8.4: the operators and the runner, properties against the core as the oracle, the proof of gain against a local HTTP server, and the code blocks of the documentation.
 - **Properties:** 200 seeded inputs per property: `selectAsync()`/`whereAsync()`/`selectManyAsync()` answer as the core `select()`/`where()`/`selectMany()` for any concurrency, `take(k)` starts at most k + concurrency items, and the core operators downstream answer as over the synchronous version.
 - **Mutation testing:** Infection over the whole `src/`, MSI 97.74% (4 escaped mutants, all equivalent); the Quality workflow requires 96%.
 - **The report**, the timing table and the mutation run: [Tests](docs/en/quality/tests.md).
